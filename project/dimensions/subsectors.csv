@@ -1,5 +1,4 @@
 id,name
-unspecified,Unspecified
 bev_compact,BEV Compact Car
 bev_midsize,BEV Midsize Car
 bev_pickup,BEV Pickup
@@ -14,12 +13,3 @@ bev_non_freight_truck,BEV Non-Freight Truck
 bev_heavy_truck,BEV Heavy Truck
 bev_bus,BEV Bus
 rail_transit,Electric Transit Rail
-naics_3273,Cement and Concrete
-naics_3253,Pesticides and Fertilizer
-naics_3311,Iron and Steel
-naics_311_312,Food and Beverage
-naics_325_other,Chemicals
-naics_3241,Petroleum Refineries
-naics_322,Pulp and Paper
-naics_3_other,Other Manufacturing
-data_center,Datacenters

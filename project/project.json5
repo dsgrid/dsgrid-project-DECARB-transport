@@ -1,93 +1,8 @@
 {
-    project_id: 'US_DOE_DECARB_2023',
+    project_id: 'US_DOE_DECARB_transport_2023',
     description: '',
-    name: 'U.S. DOE DECARB High Resolution Load Projections 2023',
+    name: 'U.S. DOE DECARB-transport High Resolution Load Projections 2023',
     datasets: [
-        {
-            dataset_id: 'decarb_2023_buildings',
-            dataset_type: 'modeled',
-            version: '1.0.0',
-            required_dimensions: {
-                single_dimensional: {
-                    subsector: {
-                        base: [
-                            "unspecified",
-                        ],
-                    },
-                },
-                multi_dimensional: [
-                    {
-                        sector: {
-                            base: [
-                                "com",
-                            ],
-                        },
-                        metric: {
-                            subset: [
-                                {
-                                    name: 'End Uses by Sector',
-                                    selectors: [
-                                        'commercial_end_uses',
-                                    ],
-                                },
-                            ],
-                        },
-                    },
-                    {
-                        sector: {
-                            base: [
-                                'res',
-                            ],
-                        },
-                        metric: {
-                            subset: [
-                                {
-                                    name: 'End Uses by Sector',
-                                    selectors: [
-                                        'residential_end_uses',
-                                    ],
-                                },
-                            ],
-                        },
-                    },
-                ],
-            },
-        },
-        {
-            dataset_id: 'decarb_2023_industry',
-	    wrap_time_allowed: true,
-            dataset_type: 'modeled',
-            version: '1.0.0',
-            required_dimensions: {
-                single_dimensional: {
-                    sector: {
-                        base: [
-                            'ind',
-                        ],
-                    },
-                    subsector: {
-                        subset: [
-                            {
-                                name: 'Subsectors by Sector',
-                                selectors: [
-                                    'industrial_subsectors',
-                                ],
-                            },
-                        ],
-                    },
-                    metric: {
-                        subset: [
-                            {
-                                name: 'End Uses by Sector',
-                                selectors: [
-                                    'industrial_end_uses',
-                                ],
-                            },
-                        ],
-                    }
-                },
-            },
-        },
         {
             dataset_id: 'decarb_2023_transport',
             dataset_type: 'modeled',
@@ -151,103 +66,6 @@
                 ],
             },
         },
-        {
-            dataset_id: 'decarb_2023_dgen',
-            wrap_time_allowed: true,
-            dataset_type: 'modeled',
-            version: '1.0.0',
-            required_dimensions: {
-                single_dimensional: {
-                    sector: {
-                        base: ['res', 'com'],
-                    },
-                    subsector: {
-                        base: ['unspecified'],
-                    },
-                    metric: {
-                        base: ['electricity_dpv']
-                    }
-                }
-            }
-        },
-        {
-            dataset_id: 'decarb_2023_res_and_com_residuals',
-            dataset_type: 'modeled',
-            version: '1.0.0',
-            required_dimensions: {
-            single_dimensional: {
-            model_year: {
-            base: ["2024", "2030", "2050"],
-          },
-          subsector: {
-            base: ['unspecified'],
-          },
-          metric: {
-            base: ['electricity_unspecified'],
-          },
-          sector: {
-            base: ['com', 'res'],
-              },
-            },
-          },
-        },
-        {
-            dataset_id: 'decarb_2023_ind_residuals',
-            dataset_type: 'modeled',
-            version: '1.0.0',
-            required_dimensions: {
-            single_dimensional: {
-          subsector: {
-            base: ['unspecified'],
-          },
-          metric: {
-            base: ['electricity_unspecified'],
-          },
-          sector: {
-            base: ['ind'],
-              },
-            },
-          },
-        },
-        {
-            dataset_id: 'decarb_2023_datacenters',
-            dataset_type: 'modeled',
-            version: '1.0.0',
-            required_dimensions: {
-            single_dimensional: {
-          subsector: {
-            base: ['data_center'],
-          },
-          metric: {
-            base: ['electricity_unspecified'],
-          },
-          sector: {
-            base: ['com'],
-              },
-            },
-          },
-        },
-        {
-          dataset_id: 'eia_861_annual_energy_use_state_sector',
-          dataset_type: 'historical',
-          version: '1.0.0',
-          required_dimensions: {
-          single_dimensional: {
-          model_year: {
-            base: ["2024"],
-          },
-          subsector: {
-            base: ['unspecified'],
-          },
-          metric: {
-            base: ['electricity_unspecified'],
-          },
-          sector: {
-            base: ['com', 'res', 'ind', 'trans'],
-              },
-            },
-          },
-        },
     ],
 
     dimensions: {
@@ -264,9 +82,9 @@
             {
                 type: 'sector',
                 class: 'Sector',
-                name: 'Sectors - Com-Ind-Res-Trans',
+                name: 'Sectors - Transportation Only',
                 display_name: 'Sector',
-                description: 'DECARB 2023 Demand Sectors; Commercial, Industrial, Residential, and Transportation',
+                description: 'DECARB 2023 Demand Sector; Transportation',
                 file: 'dimensions/sectors.csv',
                 module: 'dsgrid.dimension.standard',
             },
@@ -275,7 +93,7 @@
                 class: 'Subsector',
                 name: 'DECARB 2023 Demand Subsectors',
                 display_name: 'Subsector',
-                description: 'DECARB 2023 Demand Subsectors; No breakouts for buildings, vehicles by class and range, 3-digit NAICS for most manufacturing',
+                description: 'DECARB 2023 Demand Subsectors; Vehicle Class',
                 file: 'dimensions/subsectors.csv',
                 module: 'dsgrid.dimension.standard',
             },
@@ -284,7 +102,7 @@
                 class: 'EnergyEndUse',
                 name: 'DECARB 2023 End Uses',
                 display_name: 'End Use',
-                description: 'DECARB 2023 Demand End Uses', // TODO: Describe contents--level of detail, fuel types
+                description: 'DECARB 2023 Demand End Uses; Charging Electricity Types',
                 file: 'dimensions/enduses.csv',
                 module: 'dsgrid.dimension.standard',
             },
@@ -302,7 +120,7 @@
                 class: 'Scenario',
                 name: 'DECARB 2023 High-Resolution Demand Scenarios',
                 display_name: 'Scenario',
-                description: 'DECARB 2023 High-Resolution Demand Scenarios; Limited to a single, high decarbonization scenario',
+                description: 'DECARB 2023 High-Resolution Demand Scenarios; DECARB High, with two charging behaviors: unmanaged and overnight slow',
                 file: 'dimensions/scenarios.csv',
                 module: 'dsgrid.dimension.standard',
             },
@@ -340,7 +158,7 @@
             {
                 name: 'End Uses by Sector',
                 display_name: 'end_uses_by_sector',
-                description: 'Selects end uses by sector, with buildings split into residential and commercial.',
+                description: 'Selects end uses by sector',
                 type: 'metric',
                 file: 'dimensions/subset/end_uses_by_sector.csv',
                 create_supplemental_dimension: false,
@@ -357,7 +175,7 @@
                     },
                     {
                         name: 'transportation_end_uses',
-                        description: 'Transportation LDV End Uses',
+                        description: 'Transportation End Uses',
                         column_values: {'fuel_id': 'electricity', 'unit': 'MWh'},
                     },
                     {
@@ -385,7 +203,7 @@
                     },
                     {
                         name: 'transportation_subsectors',
-                        description: 'Transportation LDV Subsectors',
+                        description: 'Transportation Subsectors',
                     },
                     {
                         name: 'industrial_subsectors',
