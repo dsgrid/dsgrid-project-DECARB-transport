@@ -1,7 +1,7 @@
 {
   mappings: [
       {
-      description: "scenarios with variations on EV charging behavior to DECARB High default (immediate unmanaged)",
+      description: "rename scenarios with variations on EV charging behavior",
       dimension_type: "scenario",
       file: "dimension_mappings/scenario_to_scenario.csv",
       mapping_type: "one_to_one",
