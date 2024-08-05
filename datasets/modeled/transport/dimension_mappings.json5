@@ -7,10 +7,10 @@
       mapping_type: "one_to_one",
     },
     {
-      description: "TEMPO EVIX POLARIS subsectors (detailed vehicle types) to project sectors (simpler vehicle types)",
+      description: "TEMPO EVIX POLARIS subsectors (detailed vehicle types) to project subsectors (one rename)",
       dimension_type: "subsector",
       file: "dimension_mappings/subsector_to_subsector.csv",
-      mapping_type: "many_to_one_aggregation",
+      mapping_type: "one_to_one",
     },
     {
       description: "county mapping to project counties - no data for 46102 Oglala Lakota SD (reflected in data with null time), and removing AK/HI",
